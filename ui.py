@@ -1,12 +1,7 @@
 from tkinter import *
 
 class UIpaint:
-    root = None
-    toolbar = None
-    pennello = None
-    gomma = None
 
-        
 
     def __init__(self):
         self.root = Tk()
@@ -14,7 +9,10 @@ class UIpaint:
         self.root.geometry("1920x1080")
         self.create_toolbar()
         self.create_buttons()
+        self.create_canvas()
         #self.root.attributes('-fullscreen', True)
+        self.root.rowconfigure([1,4], weight=1)
+        self.root.columnconfigure(1,weight=1)
         self.root.mainloop()
     
     def Save():
@@ -33,11 +31,15 @@ class UIpaint:
         filemenu.add_command(label="New", command=self.New)
         self.toolbar.add_cascade(label="File", menu=filemenu)
 
+    
+
     def create_buttons(self):
         self.pennello = Button(self.root, text="pennello", font=("Helvetica bold", 20), bg= "white", width=3)
-        self.gomma = Button(self.root, text="pennello", font=("Helvetica bold", 20), bg= "white", width=3)
-        self.pennello.grid(row=4, column=0)
-        self.gomma.grid(row=5, column=0)
+        self.gomma = Button(self.root, text="gomma", font=("Helvetica bold", 20), bg= "white", width=3)
+        self.pennello.grid(row=2, column=0)
+        self.gomma.grid(row=3, column=0)
 
 
-    
+    def create_canvas(self):
+        self.canvas = Canvas(self.root, bg="red")
+        self.canvas.grid(row = 1, column=1, rowspan=5, columnspan=2,sticky="nsew")
