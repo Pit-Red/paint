@@ -1,1 +1,3 @@
-print("hello")
+from ui import UIpaint
+
+p = UIpaint()
