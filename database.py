@@ -12,11 +12,11 @@ def create_table():
     cursor.execute('DROP TABLE IF EXISTS draw')
     query = """
     CREATE TABLE draw(
-    id INTEGER AUTOINCREMENT,
+    id INTEGER,
     title TEXT UNIQUE NOT NULL,
     description TEXT,
     creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (title,data_creazione)
+    PRIMARY KEY (title,creation_date)
     )
     """
     cursor.execute(query)
@@ -82,7 +82,7 @@ def get_creation_date(title):
     try:
         cursor = conn.cursor()
 
-        cursor.execute('SELECT creation_date FROM draw WHERE title = ?'(title,))
+        cursor.execute('SELECT creation_date FROM draw WHERE title = ?',(title,))
 
         risultato = cursor.fetchone()
         cursor.close()
